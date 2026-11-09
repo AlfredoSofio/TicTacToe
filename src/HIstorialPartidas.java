@@ -134,14 +134,8 @@ public class HIstorialPartidas {
 
                 salida.writeUTF(resultado.getJugador1());
                 salida.writeUTF(resultado.getJugador2());
-
                 String ganador = resultado.getGanador();
-
-
-                salida.writeUTF(
-                        ganador == null ? "" : ganador
-                );
-
+                salida.writeUTF(ganador == null ? "" : ganador);
                 salida.writeBoolean(resultado.isEmpate());
             }
 
@@ -149,10 +143,7 @@ public class HIstorialPartidas {
 
         } catch (IOException e) {
 
-            System.out.println(
-                    "Error al guardar el historial: "
-                            + e.getMessage()
-            );
+            System.out.println("Error al guardar el historial: " + e.getMessage());
         }
     }
 
@@ -170,17 +161,12 @@ public class HIstorialPartidas {
         ArrayList<Resultado> resultadosCargados =
                 new ArrayList<>();
 
-        try (DataInputStream entrada =
-                     new DataInputStream(
-                             Files.newInputStream(ruta))) {
-
+        try (DataInputStream entrada = new DataInputStream(Files.newInputStream(ruta))) {
 
             int cantidad = entrada.readInt();
 
             if (cantidad < 0) {
-                throw new IOException(
-                        "Cantidad de resultados inválida."
-                );
+                throw new IOException("Cantidad de resultados inválida.");
             }
 
             for (int i = 0; i < cantidad; i++) {
@@ -195,14 +181,7 @@ public class HIstorialPartidas {
                     ganador = null;
                 }
 
-
-                Resultado resultado = new Resultado(
-                        jugador1,
-                        jugador2,
-                        ganador,
-                        empate
-                );
-
+                Resultado resultado = new Resultado(jugador1,jugador2,ganador,empate);
                 resultadosCargados.add(resultado);
             }
 
